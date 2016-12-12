@@ -189,7 +189,7 @@ def test_remove_background(spoof_tesseract_noop):
     assert im.getextrema() != ((0, 255), (0, 255), (0, 255))
 
     output_pdf = check_ocrmypdf(
-        'congress.jpg', 'test_remove_bg.pdf', '--remove-background',
+        'congress.jpg', 'test_remove_bg.pdf', '-k', '--remove-background',
         '--image-dpi', '150',
         env=spoof_tesseract_noop)
 
@@ -297,7 +297,7 @@ def test_override_metadata(spoof_tesseract_noop, output_type):
 def test_oversample(spoof_tesseract_cache, renderer):
     oversampled_pdf = check_ocrmypdf(
         'skew.pdf', 'test_oversample_%s.pdf' % renderer, '--oversample', '350',
-        '-f',
+        '-f', '-k',
         '--pdf-renderer', renderer, env=spoof_tesseract_cache)
 
     pdfinfo = pdf_get_all_pageinfo(oversampled_pdf)
